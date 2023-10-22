@@ -32,12 +32,12 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
           <Typography variant="body1">Member Name: {name}</Typography>
           <Typography variant="body1">Parent Member ID: {parentId}</Typography>
           <Typography variant="body1">Level (Height): {node.height}</Typography>
-          {type === "Manager" && (
+          {type === "Manager" && node.departmentName && (
             <Typography variant="body1">
               Department Managed: {node.departmentName}
             </Typography>
           )}
-          {type === "Developer" && (
+          {type === "Developer" && node.programingLanguage && (
             <Typography variant="body1">
               Preferred Language: {node.programingLanguage}
             </Typography>
