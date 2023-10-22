@@ -27,11 +27,11 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
         }}
       >
         <Box>
-          <Typography variant="h6">MemberNode Information</Typography>
-          <Typography variant="body1">MemberNode ID: {id}</Typography>
-          <Typography variant="body1">MemberNode Name: {name}</Typography>
-          <Typography variant="body1">Parent MemberNode: {parentId}</Typography>
-
+          <Typography variant="h6">Member Information</Typography>
+          <Typography variant="body1">Member ID: {id}</Typography>
+          <Typography variant="body1">Member Name: {name}</Typography>
+          <Typography variant="body1">Parent Member ID: {parentId}</Typography>
+          <Typography variant="body1">Level (Height): {node.height}</Typography>
           {type === "Manager" && (
             <Typography variant="body1">
               Department Managed: {node.departmentName}
