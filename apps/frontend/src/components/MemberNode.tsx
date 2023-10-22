@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { MemberNode } from "shared-types";
 import { useMemberNode } from "../hooks/useMemberNode";
+import { AddMemberNodeModal } from "./AddMemberNodeModal";
 
 type Props = {
   node: MemberNode & { height: number };
@@ -10,6 +11,9 @@ type Props = {
 export const MemberNodeComponent: FC<Props> = ({ node }) => {
   const { id, name, parentId, type } = node;
   const { children, addNode } = useMemberNode(id);
+
+  const [open, setOpen] = useState(false);
+
   return (
     <Box>
       <Paper
@@ -51,6 +55,15 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
           </Box>
         ))}
       </Box>
+      {open && (
+        <AddMemberNodeModal
+          onClose={() => setOpen(false)}
+          onSave={async (node: Omit<MemberNode, "id">) => {
+            await addNode(node);
+            setOpen(false);
+          }}
+        />
+      )}
     </Box>
   );
 };
