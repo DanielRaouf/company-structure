@@ -2,3 +2,4 @@ node_modules
 build
 dist
 *lock.yaml
+.DS_Store
