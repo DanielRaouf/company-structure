@@ -17,7 +17,7 @@ describe("memberNodeService test", () => {
     expect(addedNode.id).toBeDefined();
   });
 
-  it("get node children", async () => {
+  it("getNodeChildren", async () => {
     const addedNode = await memberNodeService.addNode({
       body: {
         name: TEST_NAME,
@@ -48,5 +48,15 @@ describe("memberNodeService test", () => {
       },
     } as FastifyRequest<{ Params: { id: number } }>);
     expect(childNodes).toHaveLength(2);
+  });
+
+  it("getNodeChildren should return root node if passed zero id", async () => {
+    const childNodes = await memberNodeService.getNodeChildren({
+      params: {
+        id: 0,
+      },
+    } as FastifyRequest<{ Params: { id: number } }>);
+    expect(childNodes).toHaveLength(1);
+    expect(childNodes.at(0)?.parentId).toBeUndefined();
   });
 });
