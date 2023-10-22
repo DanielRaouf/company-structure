@@ -15,8 +15,10 @@ type Props = {
 };
 
 export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
-  const { handleSubmit, register } =
+  const { handleSubmit, register, watch } =
     useForm<Omit<MemberNode, "id" | "parentId">>();
+
+  const type = watch("type");
 
   return (
     <Dialog open={true} onClose={onClose}>
@@ -28,7 +30,6 @@ export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
             autoFocus
             id="name"
             label="Name"
-            {...register("name", { required: true })}
             type="text"
             fullWidth
             variant="outlined"
@@ -44,6 +45,25 @@ export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
             <MenuItem value={"Developer"}>Developer</MenuItem>
             <MenuItem value={"Manager"}>Manager</MenuItem>
           </Select>
+          {type === "Manager" ? (
+            <TextField
+              id="departmentName"
+              label="Department Name"
+              name="departmentName"
+              type="text"
+              fullWidth
+              variant="outlined"
+            />
+          ) : (
+            <TextField
+              id="programingLanguage"
+              label="Prefered Programing Language"
+              name="programingLanguage"
+              type="text"
+              fullWidth
+              variant="outlined"
+            />
+          )}
         </DialogContent>
         <DialogActions>
           <Button type="submit">Save</Button>
