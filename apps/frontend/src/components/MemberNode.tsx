@@ -67,7 +67,7 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
           justifyContent: "space-between",
         }}
       >
-        {[node].map((childNode) => (
+        {children.map((childNode) => (
           <Box
             sx={{
               display: "flex",
