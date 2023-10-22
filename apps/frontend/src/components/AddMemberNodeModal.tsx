@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { MemberNode } from "shared-types";
-import { MenuItem, OutlinedInput, Select } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 type Props = {
@@ -30,6 +30,7 @@ export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
             autoFocus
             id="name"
             label="Name"
+            {...register("name", { required: true })}
             type="text"
             fullWidth
             variant="outlined"
