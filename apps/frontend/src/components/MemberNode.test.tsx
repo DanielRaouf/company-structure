@@ -15,6 +15,8 @@ test("renders learn react link", () => {
   );
   const memberId = screen.getByText(/Member ID: 1/i);
   const departmentManaged = screen.getByText(/Department Managed: IT/i);
+  // @ts-ignore
   expect(memberId).toBeInTheDocument();
+  // @ts-ignore
   expect(departmentManaged).toBeInTheDocument();
 });
