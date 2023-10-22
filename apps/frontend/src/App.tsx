@@ -6,7 +6,12 @@ const App = () => {
   const { children } = useMemberNode(0);
   return (
     <Box
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 2,
+      }}
     >
       {children.map((node) => (
         <MemberNodeComponent node={{ ...node, height: 0 }} />
