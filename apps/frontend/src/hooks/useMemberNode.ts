@@ -7,14 +7,30 @@ export const useMemberNode = (id: number) => {
   const [children, setChildren] = useState<MemberNode[]>([]);
 
   const addNode = useCallback(async (node: Omit<MemberNode, "id">) => {
-    console.log("xxxx", node);
+    try {
+      const res = await fetch(`${baseUrl}/node`, {
+        method: "POST",
+        body: JSON.stringify(node),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const addedNode: MemberNode = await res.json();
+      setChildren((old) => [...old, addedNode]);
+    } catch (e) {
+      //TODO: add error reporting
+    }
   }, []);
 
   useEffect(() => {
     const fetchChildren = async () => {
-      const res = await fetch(`${baseUrl}/children/${id}`);
-      const nodes: MemberNode[] = await res.json();
-      setChildren(nodes);
+      try {
+        const res = await fetch(`${baseUrl}/children/${id}`);
+        const nodes: MemberNode[] = await res.json();
+        setChildren(nodes);
+      } catch (e) {
+        //TODO: add error reporting
+      }
     };
     fetchChildren();
   }, [id, setChildren]);
