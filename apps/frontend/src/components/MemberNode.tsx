@@ -24,6 +24,7 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          backgroundColor: type === "Manager" ? "#a1eff9" : "#b4fecf",
         }}
       >
         <Box>
