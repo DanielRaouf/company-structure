@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, IconButton, Paper, Typography } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { MemberNode } from "shared-types";
 import { useMemberNode } from "../hooks/useMemberNode";
 import { AddMemberNodeModal } from "./AddMemberNodeModal";
@@ -25,21 +26,39 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
           flexDirection: "column",
         }}
       >
-        <Typography variant="h6">Node Information</Typography>
-        <Typography variant="body1">Node ID: {id}</Typography>
-        <Typography variant="body1">Node Name: {name}</Typography>
-        <Typography variant="body1">Parent Node: {parentId}</Typography>
-        {type === "Manager" && (
-          <Typography variant="body1">
-            Department Managed: {node.departmentName}
-          </Typography>
-        )}
-        {type === "Developer" && (
-          <Typography variant="body1">
-            Preferred Language: {node.programingLanguage}
-          </Typography>
-        )}
-        <button onClick={() => setOpen(true)}>Add</button>
+        <Box>
+          <Typography variant="h6">MemberNode Information</Typography>
+          <Typography variant="body1">MemberNode ID: {id}</Typography>
+          <Typography variant="body1">MemberNode Name: {name}</Typography>
+          <Typography variant="body1">Parent MemberNode: {parentId}</Typography>
+
+          {type === "Manager" && (
+            <Typography variant="body1">
+              Department Managed: {node.departmentName}
+            </Typography>
+          )}
+          {type === "Developer" && (
+            <Typography variant="body1">
+              Preferred Language: {node.programingLanguage}
+            </Typography>
+          )}
+        </Box>
+        <Box
+          sx={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row-reverse",
+          }}
+        >
+          <IconButton
+            color="primary"
+            aria-label="add node"
+            onClick={() => setOpen(true)}
+            sx={{ borderRadius: 1 }}
+          >
+            <AddIcon />
+          </IconButton>
+        </Box>
       </Paper>
       <Box
         sx={{
@@ -48,8 +67,16 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
           justifyContent: "space-between",
         }}
       >
-        {children.map((childNode) => (
-          <Box>
+        {[node].map((childNode) => (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              marginX: 1,
+            }}
+          >
+            <Box sx={{ width: 4, height: 20, backgroundColor: "black" }} />
             <MemberNodeComponent
               node={{ ...childNode, height: node.height + 1 }}
             />

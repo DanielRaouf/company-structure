@@ -6,7 +6,9 @@ const baseUrl = process.env.BASE_URL ?? "http://localhost:8080";
 export const useMemberNode = (id: number) => {
   const [children, setChildren] = useState<MemberNode[]>([]);
 
-  const addNode = useCallback(async (node: Omit<MemberNode, "id">) => {}, []);
+  const addNode = useCallback(async (node: Omit<MemberNode, "id">) => {
+    console.log("xxxx", node);
+  }, []);
 
   useEffect(() => {
     const fetchChildren = async () => {
