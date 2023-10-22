@@ -7,8 +7,10 @@ const memberNodes: MemberNode[] = [{ id: 1, name: "Keld", type: "Manager" }];
 export const getNodeChildren = async (
   request: FastifyRequest<{ Params: { id: number } }>
 ) => {
-  return memberNodes.filter(
-    (node) => node.parentId === Number(request.params.id)
+  return memberNodes.filter((node) =>
+    Number(request.params.id)
+      ? node.parentId === Number(request.params.id)
+      : !node.parentId
   );
 };
 
