@@ -39,6 +39,7 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
             Preferred Language: {node.programingLanguage}
           </Typography>
         )}
+        <button onClick={() => setOpen(true)}>Add</button>
       </Paper>
       <Box
         sx={{

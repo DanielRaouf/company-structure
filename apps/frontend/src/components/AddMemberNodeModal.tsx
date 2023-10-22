@@ -67,6 +67,7 @@ export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
           )}
         </DialogContent>
         <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
           <Button type="submit">Save</Button>
         </DialogActions>
       </form>
