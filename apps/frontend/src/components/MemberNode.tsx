@@ -58,8 +58,8 @@ export const MemberNodeComponent: FC<Props> = ({ node }) => {
       {open && (
         <AddMemberNodeModal
           onClose={() => setOpen(false)}
-          onSave={async (node: Omit<MemberNode, "id">) => {
-            await addNode(node);
+          onSave={async (node: Omit<MemberNode, "id" | "parentId">) => {
+            await addNode({ ...node, parentId: id });
             setOpen(false);
           }}
         />
