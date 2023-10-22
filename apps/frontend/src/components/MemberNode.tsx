@@ -4,7 +4,7 @@ import { MemberNode } from "shared-types";
 import { useMemberNode } from "../hooks/useMemberNode";
 
 type Props = {
-  node: MemberNode;
+  node: MemberNode & { height: number };
 };
 
 export const MemberNodeComponent: FC<Props> = ({ node }) => {

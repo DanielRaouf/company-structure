@@ -9,7 +9,7 @@ const App = () => {
       sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
       {children.map((node) => (
-        <MemberNodeComponent node={node} />
+        <MemberNodeComponent node={{ ...node, height: 0 }} />
       ))}
     </Box>
   );
