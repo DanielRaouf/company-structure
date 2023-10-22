@@ -6,12 +6,12 @@ type NodeCommon = {
   parentId?: number;
 };
 
-type Manager = NodeCommon & {
+export type Manager = NodeCommon & {
   type: "Manager";
   departmentName?: string;
 };
 
-type Developer = NodeCommon & {
+export type Developer = NodeCommon & {
   type: "Developer";
   programingLanguage?: string;
 };

@@ -5,7 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { MemberNode } from "shared-types";
+import { Developer, Manager, MemberNode } from "shared-types";
 import { MenuItem, Select } from "@mui/material";
 import { useForm } from "react-hook-form";
 
@@ -15,8 +15,9 @@ type Props = {
 };
 
 export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
-  const { handleSubmit, register, watch } =
-    useForm<Omit<MemberNode, "id" | "parentId">>();
+  const { handleSubmit, register, watch } = useForm<
+    Omit<Manager, "id" | "parentId"> | Omit<Developer, "id" | "parentId">
+  >();
 
   const type = watch("type");
 
@@ -50,7 +51,7 @@ export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
             <TextField
               id="departmentName"
               label="Department Name"
-              name="departmentName"
+              {...register("departmentName")}
               type="text"
               fullWidth
               variant="outlined"
@@ -59,7 +60,7 @@ export const AddMemberNodeModal = ({ onClose, onSave }: Props) => {
             <TextField
               id="programingLanguage"
               label="Prefered Programing Language"
-              name="programingLanguage"
+              {...register("programingLanguage")}
               type="text"
               fullWidth
               variant="outlined"
